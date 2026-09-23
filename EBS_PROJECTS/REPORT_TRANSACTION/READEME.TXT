@@ -11,7 +11,7 @@ PARAMETAR {
     P_CUSTOMER_NUMBER      > CHAR > customer Number
     P_ORGANIZATION_NUMBER  > CHAR > Organization Number 
 }
-REPORT PATH         : /u01/install/APPS##########################
+REPORT PATH         : /u01/install/APPS/fs1/EBSapps/appl/ar/12.0.0/reports/US
 CONCURRENT PROGRAM  : XXDTC_TRANSACTION_REVIEW
 RESPONSALBILITY     : Receivables, Vision Operations (USA)
 REQUEST GROUP       : Receivables All
