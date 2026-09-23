@@ -1,0 +1,40 @@
+FOR TEST {
+    MONTH : 02
+    YEAR : 2006
+    CUSTOMER_NUMBER : 1002
+
+}
+PARAMETAR {
+    P_INVOICE_MONTH        > LIST > Invoice Month
+    P_INVOICE_YEAR         > CHAR > Invoice Year
+    P_INVOICE_NUMBER       > CHAR > Invoice Number
+    P_CUSTOMER_NUMBER      > CHAR > customer Number
+    P_ORGANIZATION_NUMBER  > CHAR > Organization Number 
+}
+REPORT PATH         : /u01/install/APPS##########################
+CONCURRENT PROGRAM  : XXDTC_TRANSACTION_REVIEW
+RESPONSALBILITY     : Receivables, Vision Operations (USA)
+REQUEST GROUP       : Receivables All
+APPLICATION         : Receivables
+PROGRAM             : XXDTC Transaction Financial Review
+RTF NAME            : Transaction_Financial_Review
+
+LIST OF VALUE(VALUE SET) : {
+            NAME : XXTRANSACTION_MONTHS
+            LIST : {
+                    01 - JAN
+                    02 - FEB
+                    03 - MAR
+                    04 - APR
+                    05 - MAY
+                    06 - JUN
+                    07 - JUL
+                    08 - AUG
+                    09 - SEP
+                    10 - OCT
+                    11 - NOV
+                    12 - DEC
+            }
+} 
+                        
+

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XXDTC Transaction Financial Review Presentation</title>
+    <style>
+        :root {
+            --bg-dark: #0F172A;
+            --primary: #0284C7;
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            --card-bg: #FFFFFF;
+            --accent-green: #10B981;
+            --border-color: #E2E8F0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0F172A;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .slide {
+            width: 1000px;
+            min-height: 562.5px; /* 16:9 Aspect Ratio */
+            background-color: #F8FAFC;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            padding: 35px 40px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* Slide Cover */
+        .slide-cover {
+            background-color: var(--bg-dark);
+            color: #FFFFFF;
+            justify-content: center;
+            padding-left: 60px;
+        }
+
+        .slide-cover .tag {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .slide-cover h1 {
+            font-size: 38px;
+            margin: 0 0 16px 0;
+            line-height: 1.2;
+        }
+
+        .slide-cover p {
+            font-size: 18px;
+            color: #94A3B8;
+            margin: 0;
+            max-width: 800px;
+        }
+
+        .slide-cover .accent-line {
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            margin-top: 24px;
+            border-radius: 2px;
+        }
+
+        /* Slide Headers */
+        .header {
+            margin-bottom: 16px;
+        }
+
+        .header .category {
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .header h2 {
+            font-size: 24px;
+            color: var(--bg-dark);
+            margin: 4px 0 0 0;
+        }
+
+        /* Grid Layouts */
+        .grid-2x2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 16px;
+        }
+
+        .card .label {
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .card .value {
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--text-dark);
+            word-break: break-all;
+        }
+
+        /* Tables & LOV */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        th {
+            background-color: var(--bg-dark);
+            color: white;
+            text-align: left;
+            padding: 8px 10px;
+            font-size: 11px;
+        }
+
+        td {
+            padding: 6px 10px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 11px;
+            color: var(--text-dark);
+        }
+
+        .lov-card {
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            box-sizing: border-box;
+        }
+
+        .lov-card h4 {
+            margin: 0 0 10px 0;
+            color: var(--primary);
+            font-size: 13px;
+        }
+
+        .lov-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .lov-item {
+            background: #F1F5F9;
+            padding: 6px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        /* Full SQL Code Container */
+        .code-box {
+            background-color: #1E293B;
+            color: #E2E8F0;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 10px;
+            line-height: 1.35;
+            overflow-y: auto;
+            max-height: 420px;
+            white-space: pre;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Test Scenario Style */
+        .test-box {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 6px solid var(--accent-green);
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .test-item .t-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .test-item .t-val {
+            font-size: 16px;
+            color: var(--accent-green);
+            font-weight: bold;
+            margin-top: 4px;
+        }
+
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            .slide {
+                page-break-after: always;
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1: Title Cover -->
+    <div class="slide slide-cover">
+        <div class="tag">ORACLE EBS R12 TECHNICAL SPECIFICATION</div>
+        <h1>Report Name :</h1>
+        <h1>XXDTC Transaction Financial Review</h1>
+        <p>Technical specifications, Full SQL Query Architecture, and Data Structure for Receivables Financial Transaction Review (AR Module)</p>
+        <div class="accent-line"></div>
+    </div>
+
+    <!-- Slide 2: Executable & Program Registration Details -->
+    <div class="slide">
+        <div class="header">
+            <div class="category">XXDTC Transaction Financial Review</div>
+            <h2>1. Executable & Registration Metadata</h2>
+        </div>
+        <div class="grid-2x2">
+            <div class="card"><div class="label">Concurrent Program</div><div class="value">XXDTC_TRANSACTION_REVIEW</div></div>
+            <div class="card"><div class="label">Program Name</div><div class="value">XXDTC Transaction Financial Review</div></div>
+            <div class="card"><div class="label">Application</div><div class="value">Receivables</div></div>
+            <div class="card"><div class="label">Responsibility</div><div class="value">Receivables, Vision Operations (USA)</div></div>
+            <div class="card"><div class="label">Request Group</div><div class="value">Receivables All</div></div>
+            <div class="card"><div class="label">RTF Template Name</div><div class="value">Transaction_Financial_Review</div></div>
+            <div class="card" style="grid-column: span 2;"><div class="label">Report Path</div><div class="value">/u01/install/APPS/fs1/EBSapps/appl/ar/12.0.0/reports/US</div></div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Concurrent Parameters Definition -->
+    <div class="slide">
+        <div class="header">
+            <div class="category">XXDTC Transaction Financial Review</div>
+            <h2>2. Concurrent Program Parameters</h2>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Seq</th>
+                    <th>Parameter Name</th>
+                    <th>Prompt</th>
+                    <th>Type</th>
+                    <th>Value Set</th>
+                    <th>Token Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>10</td><td>P_INVOICE_MONTH</td><td>Invoice Month</td><td>LIST</td><td>XXTRANSACTION_MONTHS</td><td>P_INVOICE_MONTH</td></tr>
+                <tr><td>15</td><td>P_INVOICE_YEAR</td><td>Invoice Year</td><td>CHAR</td><td>-</td><td>P_INVOICE_YEAR</td></tr>
+                <tr><td>20</td><td>P_INVOICE_NUMBER</td><td>Invoice Number</td><td>CHAR</td><td>-</td><td>P_INVOICE_NUMBER</td></tr>
+                <tr><td>25</td><td>P_CUSTOMER_NUMBER</td><td>Customer Number</td><td>CHAR</td><td>-</td><td>P_CUSTOMER_NUMBER</td></tr>
+                <tr><td>30</td><td>P_ORGANIZATION_NUMBER</td><td>Organization Number</td><td>CHAR</td><td>-</td><td>P_ORGANIZATION_NUMBER</td></tr>
+            </tbody>
+        </table>
+
+        <div class="lov-card">
+            <h4>Value Set Configuration: XXTRANSACTION_MONTHS (LIST OF VALUES)</h4>
+            <div class="lov-grid">
+                <div class="lov-item">01 - JAN</div>
+                <div class="lov-item">02 - FEB</div>
+                <div class="lov-item">03 - MAR</div>
+                <div class="lov-item">04 - APR</div>
+                <div class="lov-item">05 - MAY</div>
+                <div class="lov-item">06 - JUN</div>
+                <div class="lov-item">07 - JUL</div>
+                <div class="lov-item">08 - AUG</div>
+                <div class="lov-item">09 - SEP</div>
+                <div class="lov-item">10 - OCT</div>
+                <div class="lov-item">11 - NOV</div>
+                <div class="lov-item">12 - DEC</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Test Scenario Execution -->
+    <div class="slide">
+        <div class="header">
+            <div class="category">XXDTC Transaction Financial Review</div>
+            <h2>3. Test </h2>
+        </div>
+        <div class="test-box">
+            <div style="font-weight: bold; color: var(--bg-dark); margin-bottom: 15px; font-size: 14px;">Test Case Parameters Input:</div>
+            <div class="test-grid">
+                <div class="test-item">
+                    <div class="t-label">Invoice Month (MONTH)</div>
+                    <div class="t-val">02 (FEB)</div>
+                </div>
+                <div class="test-item">
+                    <div class="t-label">Invoice Year (YEAR)</div>
+                    <div class="t-val">2006</div>
+                </div>
+                <div class="test-item">
+                    <div class="t-label">Customer Number</div>
+                    <div class="t-val">1002</div>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="background-color: #F1F5F9; border-left: 4px solid var(--primary);">
+            <div class="label" style="font-size: 12px; margin-bottom: 6px;">Execution Context Summary</div>
+            <div style="font-size: 13px; color: var(--text-dark); line-height: 1.5;">
+                This test run filters all completed <b>USD</b> transactions under Customer <b>1002</b> specifically created for <b>February 2006</b>. The parameters map directly into the package/SQL script filtering conditions for concurrent processing.
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Complete SQL Query -->
+    <div class="slide">
+        <div class="header">
+            <div class="category">XXDTC Transaction Financial Review</div>
+            <h2>4. Complete Source SQL Query</h2>
+        </div>
+        <div class="code-box">
+SELECT 
+    RCTA.CT_REFERENCE                       REFERENCE ,
+    RCTA.TRX_NUMBER                         INVOICE_NUMBER ,
+    TO_CHAR (RCTA.TRX_DATE, 'DD-MON-YYYY')  INVOICE_DATE,
+    RCTA.INVOICE_CURRENCY_CODE              CURRENCY,
+    RCTA.ORG_ID                             ORGANIZATION_NUMBER,
+    HP.PARTY_NUMBER                         CUSTOMER_NUMBER ,
+    HP.PARTY_NAME                           CUSTOMER_NAME,
+    HP.CATEGORY_CODE ,
+    RBSA.NAME                               SOURCE_NAME ,
+    RCTLA.EXTENDED_AMOUNT                   INV_AMOUNT ,
+    RCTLA.LINE_NUMBER ,
+    RCTLA.DESCRIPTION                       ITEM_DESCRIPTION, 
+    MSIB.SEGMENT1                           ITEM_NAME,
+    NVL(RCTLA.UNIT_SELLING_PRICE,0)         UNIT_PRICE,
+    NVL(RCTLA.QUANTITY_INVOICED,0)          QUANTITY,  
+    RCTLA.EXTENDED_AMOUNT                   AMOUNT,
+    RCTTA.NAME                              TYPE_NAME,
+    RCTA.SHIP_VIA,
+    RCTA.TERM_DUE_DATE                      DUE_DATE,
+    GL.SHORT_NAME                           LEGAL_ENTITY,
+    HP.TOTAL_ORDERED_AMOUNT , 
+    HP.TOTAL_NUM_OF_ORDERS , 
+    HP_SOLD.PARTY_NAME                      SOLD_TO_CUSTOMER_NAME,
+    HCA_SOLD.ACCOUNT_NUMBER                 SOLD_TO_CUSTOMER_NUMBER,
+    HP_SHIP.PARTY_NAME                      SHIP_TO_CUSTOMER_NAME,
+    HCA_SHIP.ACCOUNT_NUMBER                 SHIP_TO_CUSTOMER_NUMBER,
+    HCSUA_SHIP.LOCATION                     SHIP_TO_LOCATION,
+    HL_SHIP.ADDRESS1                        SHIP_TO_ADDRESS1,
+    HL_SHIP.CITY                            SHIP_TO_CITY,
+    HL_SHIP.STATE                           SHIP_TO_STATE,
+    HL_SHIP.POSTAL_CODE                     SHIP_TO_POSTAL_CODE,
+    HL_SHIP.COUNTRY                         SHIP_TO_COUNTRY,
+    HP_SHIP_C.PARTY_NAME                    SHIP_TO_CONTACT_NAME,
+    HP_BILL.PARTY_NAME                      BILL_TO_CUSTOMER_NAME,
+    HCA_BILL.ACCOUNT_NUMBER                 BILL_TO_CUSTOMER_NUMBER,
+    HCSUA_BILL.LOCATION                     BILL_TO_LOCATION,
+    HL_BILL.ADDRESS1                        BILL_TO_ADDRESS1,
+    HL_BILL.CITY                            BILL_TO_CITY,
+    HL_BILL.STATE                           BILL_TO_STATE,
+    HL_BILL.POSTAL_CODE                     BILL_TO_POSTAL_CODE,
+    HL_BILL.COUNTRY                         BILL_TO_COUNTRY,
+    HP_BILL_C.PARTY_NAME                    BILL_TO_CONTACT_NAME,
+    RT.NAME                                 PAYMENT_TERM,
+    RT.DESCRIPTION                          TERM_DESCRIPTION,
+    ARM.NAME                                RECEIPT_METHOD_NAME,
+    ARM.PAYMENT_CHANNEL_CODE ,
+    ITE.BANK_BRANCH_NAME                    CUSTOMER_BANK_BRANCH,
+    ITE.BANK_NAME                           CUSTOMER_BANK_NAME,
+    ITE.BANK_NUMBER                         CUSTOMER_BANK_NUMBER,
+    ITE.ACCOUNT_NUMBER                      CUSTOMER_INSTRUMENT_NUMBER,
+    ITE.INSTRUMENT_TYPE,
+    ITE.PAYMENT_CHANNEL_NAME,
+    ITE.TRXN_REF_NUMBER1,
+    IEBA.IBAN ,
+    IEBA.EXT_BANK_ACCOUNT_ID,
+    IEBA.BANK_ACCOUNT_NUM ,
+    CASE WHEN RCTTA.TYPE = 'CM' THEN 'Credit Memo'
+         WHEN RCTTA.TYPE = 'INV' THEN 'Invoice'
+         ELSE RCTTA.TYPE 
+    END CLASS_TYPE,
+   (SELECT SUM(XXRCTLA.QUANTITY_INVOICED ) 
+        FROM RA_CUSTOMER_TRX_LINES_ALL XXRCTLA 
+        WHERE XXRCTLA.LINE_TYPE ='LINE' 
+        AND XXRCTLA.CUSTOMER_TRX_ID = RCTLA.CUSTOMER_TRX_ID ) TOTAL_QUANTITY,  
+    (SELECT NVL(SUM(XXRCTLA.EXTENDED_AMOUNT),0) 
+        FROM RA_CUSTOMER_TRX_LINES_ALL XXRCTLA 
+        WHERE XXRCTLA.LINE_TYPE ='LINE' 
+        AND XXRCTLA.CUSTOMER_TRX_ID = RCTLA.CUSTOMER_TRX_ID ) TOTAL_INV,
+    (SELECT  NVL(SUM(TXRCTLA.EXTENDED_AMOUNT),0)
+        FROM RA_CUSTOMER_TRX_LINES_ALL TXRCTLA 
+        WHERE TXRCTLA.LINE_TYPE ='TAX' 
+        AND TXRCTLA.CUSTOMER_TRX_ID = RCTLA.CUSTOMER_TRX_ID ) TOTAL_TAX,
+    (SELECT SUM(GT_RCTLA.EXTENDED_AMOUNT) 
+        FROM RA_CUSTOMER_TRX_LINES_ALL GT_RCTLA 
+        WHERE GT_RCTLA.LINE_TYPE IN ('LINE', 'TAX') 
+        AND GT_RCTLA.CUSTOMER_TRX_ID = RCTLA.CUSTOMER_TRX_ID) GRAND_TOTAL 
+
+FROM RA_CUSTOMER_TRX_ALL                    RCTA
+INNER JOIN RA_CUST_TRX_TYPES_ALL            RCTTA               ON RCTTA.CUST_TRX_TYPE_ID = RCTA.CUST_TRX_TYPE_ID
+                                                                AND RCTTA.ORG_ID = RCTA.ORG_ID
+                                                                AND RCTTA.LEGAL_ENTITY_ID = RCTA.LEGAL_ENTITY_ID 
+                                                                AND RCTTA.SET_OF_BOOKS_ID = RCTA.SET_OF_BOOKS_ID
+INNER JOIN RA_CUSTOMER_TRX_LINES_ALL        RCTLA               ON RCTLA.CUSTOMER_TRX_ID = RCTA.CUSTOMER_TRX_ID
+                                                                AND RCTLA.LINE_TYPE = 'LINE'
+                                                                AND RCTLA.ORG_ID = RCTA.ORG_ID
+INNER JOIN RA_BATCH_SOURCES_ALL             RBSA                ON RBSA.BATCH_SOURCE_ID = RCTA.BATCH_SOURCE_ID
+                                                                AND RBSA.ORG_ID=RCTA.ORG_ID
+INNER JOIN HZ_CUST_ACCOUNTS                 HCA                 ON HCA.CUST_ACCOUNT_ID = RCTA.BILL_TO_CUSTOMER_ID 
+INNER JOIN HZ_PARTIES                       HP                  ON HP.PARTY_ID = HCA.PARTY_ID 
+INNER JOIN GL_LEDGERS                       GL                  ON GL.LEDGER_ID = RCTA.SET_OF_BOOKS_ID
+                                                                AND GL.COMPLETE_FLAG = 'Y'
+INNER JOIN HZ_CUST_ACCOUNTS                 HCA_SOLD            ON HCA_SOLD.CUST_ACCOUNT_ID = RCTA.SOLD_TO_CUSTOMER_ID 
+INNER JOIN HZ_PARTIES                       HP_SOLD             ON HP_SOLD.PARTY_ID = HCA_SOLD.PARTY_ID 
+
+LEFT OUTER JOIN AR_SYSTEM_PARAMETERS_ALL    ARSP                ON ARSP.ORG_ID = RCTA.ORG_ID
+                                                                AND ARSP.SET_OF_BOOKS_ID = RCTA.SET_OF_BOOKS_ID
+LEFT OUTER JOIN MTL_SYSTEM_ITEMS_B          MSIB                ON MSIB.INVENTORY_ITEM_ID = RCTLA.INVENTORY_ITEM_ID
+                                                                AND MSIB.ORGANIZATION_ID = ARSP.ORG_ID
+                                                                AND MSIB.ORGANIZATION_ID = RCTLA.ORG_ID
+                                                                AND MSIB.ENABLED_FLAG = 'Y'
+LEFT OUTER JOIN IBY_TRXN_EXTENSIONS_V        ITE                ON ITE.TRXN_EXTENSION_ID = RCTA.PAYMENT_TRXN_EXTENSION_ID
+LEFT OUTER JOIN IBY_EXT_BANK_ACCOUNTS        IEBA               ON IEBA.EXT_BANK_ACCOUNT_ID = ITE.INSTRUMENT_ID 
+LEFT OUTER JOIN RA_TERMS                     RT                 ON RT.TERM_ID = RCTA.TERM_ID 
+LEFT OUTER JOIN AR_RECEIPT_METHODS           ARM                ON ARM.RECEIPT_METHOD_ID = RCTA.RECEIPT_METHOD_ID 
+LEFT OUTER JOIN HZ_CUST_ACCOUNTS             HCA_SHIP           ON HCA_SHIP.CUST_ACCOUNT_ID = RCTA.SHIP_TO_CUSTOMER_ID 
+LEFT OUTER JOIN HZ_PARTIES                   HP_SHIP            ON HP_SHIP.PARTY_ID = HCA_SHIP.PARTY_ID 
+LEFT OUTER JOIN HZ_CUST_SITE_USES_ALL        HCSUA_SHIP         ON HCSUA_SHIP.SITE_USE_ID   = RCTA.SHIP_TO_SITE_USE_ID 
+LEFT OUTER JOIN HZ_CUST_ACCT_SITES_ALL       HCAA_SHIP          ON HCAA_SHIP.CUST_ACCT_SITE_ID = HCSUA_SHIP.CUST_ACCT_SITE_ID 
+LEFT OUTER JOIN HZ_PARTY_SITES               HPS_SHIP           ON HPS_SHIP.PARTY_SITE_ID  = HCAA_SHIP.PARTY_SITE_ID 
+LEFT OUTER JOIN HZ_LOCATIONS                 HL_SHIP            ON HL_SHIP.LOCATION_ID  = HPS_SHIP.LOCATION_ID 
+LEFT OUTER JOIN HZ_CUST_ACCOUNT_ROLES        HCAR_SHIP_C        ON HCAR_SHIP_C.CUST_ACCOUNT_ROLE_ID = RCTA.SHIP_TO_CONTACT_ID 
+LEFT OUTER JOIN HZ_PARTIES                   HP_SHIP_C          ON HP_SHIP_C.PARTY_ID = HCAR_SHIP_C.PARTY_ID 
+LEFT OUTER JOIN HZ_CUST_ACCOUNTS             HCA_BILL           ON HCA_BILL.CUST_ACCOUNT_ID = RCTA.BILL_TO_CUSTOMER_ID 
+LEFT OUTER JOIN HZ_PARTIES                   HP_BILL            ON HP_BILL.PARTY_ID = HCA_BILL.PARTY_ID 
+LEFT OUTER JOIN HZ_CUST_SITE_USES_ALL        HCSUA_BILL         ON HCSUA_BILL.SITE_USE_ID = RCTA.BILL_TO_SITE_USE_ID 
+LEFT OUTER JOIN HZ_CUST_ACCT_SITES_ALL       HCASA_BILL         ON HCASA_BILL.CUST_ACCT_SITE_ID = HCSUA_BILL.CUST_ACCT_SITE_ID 
+LEFT OUTER JOIN HZ_PARTY_SITES               HPS_BILL           ON HPS_BILL.PARTY_SITE_ID = HCASA_BILL.PARTY_SITE_ID
+LEFT OUTER JOIN HZ_LOCATIONS                 HL_BILL            ON HL_BILL.LOCATION_ID = HPS_BILL.LOCATION_ID 
+LEFT OUTER JOIN HZ_CUST_ACCOUNT_ROLES        HCAR_BILL_C        ON HCAR_BILL_C.CUST_ACCOUNT_ROLE_ID = RCTA.BILL_TO_CONTACT_ID 
+LEFT OUTER JOIN HZ_PARTIES                   HP_BILL_C          ON HP_BILL_C.PARTY_ID = HCAR_BILL_C.PARTY_ID  
+
+WHERE 1=1
+AND RCTA.INVOICE_CURRENCY_CODE      = 'USD'
+AND RCTA.COMPLETE_FLAG              = 'Y'
+AND TO_CHAR (RCTA.TRX_DATE, 'MM')  = NVL(:P_INVOICE_MONTH , TO_CHAR (RCTA.TRX_DATE, 'MM'))
+AND TO_CHAR (RCTA.TRX_DATE, 'YYYY') = NVL(:P_INVOICE_YEAR , TO_CHAR (RCTA.TRX_DATE, 'YYYY'))
+AND UPPER(RCTA.TRX_NUMBER)          = NVL(UPPER(:P_INVOICE_NUMBER), UPPER(RCTA.TRX_NUMBER))
+AND HCA.ACCOUNT_NUMBER              = NVL(:P_CUSTOMER_NUMBER, HCA.ACCOUNT_NUMBER)
+AND RCTA.ORG_ID                     = NVL(:P_ORGANIZATION_NUMBER,RCTA.ORG_ID)
+        </div>
+    </div>
+
+    <!-- إضافة مكتبة html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- زر التصدير إلى صور -->
+    <button id="export-btn" style="
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #10B981;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        z-index: 9999;
+    ">📸 Export All Slides to PNG</button>
+
+    <script>
+        document.getElementById('export-btn').addEventListener('click', async function () {
+            const btn = this;
+            btn.innerText = "Processing Slides...";
+            btn.disabled = true;
+
+            const slides = document.querySelectorAll('.slide');
+            
+            for (let i = 0; i < slides.length; i++) {
+                const slide = slides[i];
+                const canvas = await html2canvas(slide, {
+                    scale: 2, // جودة عالية HD
+                    useCORS: true
+                });
+                
+                const link = document.createElement('a');
+                link.download = `Slide_${i + 1}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }
+
+            btn.innerText = "📸 Export All Slides to PNG";
+            btn.disabled = false;
+        });
+    </script>
+
+</body>
+</html>
