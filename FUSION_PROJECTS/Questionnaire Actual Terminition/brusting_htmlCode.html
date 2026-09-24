@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exit Interview Checklist Completion Notice</title>
+    <style>        
+        body {
+            font-family: ''Plus Jakarta Sans'', -apple-system, BlinkMacSystemFont, ''Segoe UI'', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f1f5f9;
+            color: #0f172a;
+            margin: 0;
+            padding: 40px 15px;
+            direction: ltr;
+            text-align: left;
+            -webkit-font-smoothing: antialiased;
+        }
+        .wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
+            border: 1px solid #e2e8f0;
+        }
+        .card-header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            padding: 36px 36px 48px 36px;
+            color: #ffffff;
+            position: relative;
+        }
+        .header-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            padding: 6px 14px;
+            border-radius: 99px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            text-transform: uppercase;
+        }
+        .header-tag-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #38bdf8;
+            border-radius: 50%;
+        }
+        .header-title {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.25;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+        .content {
+            padding: 36px;
+        }
+        .welcome-box {
+            margin-bottom: 32px;
+        }
+        .welcome-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0 0 8px 0;
+            letter-spacing: -0.01em;
+        }
+        .welcome-text {
+            font-size: 14px;
+            color: #475569;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        .bento-item {
+            background: #f8fafc;
+            border: 1px solid #f1f5f9;
+            border-radius: 16px;
+            padding: 16px;
+            box-sizing: border-box;
+        }
+        .bento-item.full-width {
+            grid-column: span 2;
+        }
+        .bento-item.highlight {
+            background: #f0fdf4;
+            border-color: #dcfce7;
+        }
+        .bento-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .bento-value {
+            font-size: 14px;
+            color: #0f172a;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: #166534;
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #4ade80;
+            border-radius: 50%;
+        }
+
+        .message-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid #bae6fd;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .message-icon {
+            font-size: 20px;
+            line-height: 1;
+            background: #ffffff;
+            padding: 8px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .message-text {
+            font-size: 13px;
+            color: #0369a1;
+            font-weight: 500;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 28px;
+        }
+        .footer-system {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .footer-note {
+            font-size: 12px;
+            color: #94a3b8;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        @media screen and (max-width: 520px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            .bento-item.full-width {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="card">
+            <div class="card-header">
+                <div class="header-tag">
+                    <span class="header-tag-dot"></span>
+                    <span>InfraRose</span>
+                </div>
+                <h1 class="header-title">Exit Interview Completion Notice</h1>
+            </div>
+
+            <div class="content">
+                <div class="welcome-box">
+                    <p class="welcome-title">Dear ' || FULL_NAME || ',</p>
+                    <p class="welcome-text">Thank you for completing your exit questionnaire. Your feedback has been securely processed and successfully recorded in your personnel file.</p>
+                </div>
+
+                <div class="bento-grid">
+                    <div class="bento-item full-width">
+                        <span class="bento-label">Checklist Name</span>
+                        <div class="bento-value">' || SURVEY_TYPE || '</div>
+                    </div>
+
+                    <div class="bento-item">
+                        <span class="bento-label">Employee Name</span>
+                        <div class="bento-value">' || FULL_NAME || '</div>
+                    </div>
+
+                    <div class="bento-item">
+                        <span class="bento-label">Employee Number</span>
+                        <div class="bento-value">' || EMPLOYEE_ID || '</div>
+                    </div>
+
+                    <div class="bento-item">
+                        <span class="bento-label">Hire Date</span>
+                        <div class="bento-value">' || HIRE_DATE || '</div>
+                    </div>
+
+                    <div class="bento-item">
+                        <span class="bento-label">Last Working Day</span>
+                        <div class="bento-value">' || LAST_WORKING_DATE || '</div>
+                    </div>
+
+                    <div class="bento-item">
+                        <span class="bento-label">Tenure</span>
+                        <div class="bento-value">' || TENURE || '</div>
+                    </div>
+
+                    <div class="bento-item highlight">
+                        <span class="bento-label" style="color: #15803d;">Status</span>
+                        <div style="margin-top: 4px;">
+                            <span class="status-pill">
+                                <span class="status-dot"></span>
+                                Completed
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="message-card">
+                    <div class="message-icon">✨</div>
+                    <p class="message-text">Your valuable insights help us continuously elevate our organizational culture. We sincerely thank you for your contributions and wish you great success in your next chapter!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-system">InfraRose</div>
+            <p class="footer-note">This is an automated system notification. Please do not reply directly to this email.</p>
+        </div>
+    </div>
+
+</body>
+</html>

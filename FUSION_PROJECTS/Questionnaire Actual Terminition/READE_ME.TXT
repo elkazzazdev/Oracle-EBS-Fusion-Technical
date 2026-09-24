@@ -1,0 +1,38 @@
+APPLICATION : Oracle Fusion Cloud Applications 26C
+TASK NAME   : Exit_Interview_Questionnaire
+
+PATH        : /shared/Custom/Human Capital Management/HCM
+DATA MODEL  : Exit_Questionnaire_V2_DM
+REPORT      : Exit_Questionnaire_V2R
+
+Data Sets   : {
+    Questionnaire_V2_DM
+}
+List of Values :{
+    EmployeeNameLOV
+    EmployeeIDOV
+    ServeyTypeLOV
+}
+
+Parameters : {
+    P_SURVEY_TYPE >> Just For Exit_Interview_Type
+    P_EMPLOYEE_ID >> Link With Exit_Interview_Type
+    P_FULL_NAME   >> Link With Exit_Interview_Type
+}
+
+Project Recuiremwnt : {
+    3 Parameters 
+    Employee Name
+    Employee Number
+    Department
+    Manager Name
+    Termination Action
+    Termination Reason
+    Location
+    Job Title
+    Last Working Day
+    Hire Date
+    Tenure (Last Working Day - Hire Date)
+    Question
+    Result 
+}
