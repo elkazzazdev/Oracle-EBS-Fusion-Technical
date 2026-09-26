@@ -1,0 +1,39 @@
+ebs_django/
+├── run.bat                    ← أمر واحد يشغل كل حاجة
+├── run.sh
+├── requirements.txt
+├── manage.py
+├── .env
+├── README.md
+├── ebs_project/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│   └── asgi.py
+├── api/
+│   ├── __init__.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── views.py
+│   ├── serializers.py
+│   ├── parsers.py
+│   ├── utils.py
+│   ├── admin.py
+│   ├── urls.py
+│   ├── signals.py
+│   ├── middleware.py
+│   ├── migrations/
+│   │   └── __init__.py
+│   └── management/
+│       ├── __init__.py
+│       └── commands/
+│           ├── __init__.py
+│           └── init_admin.py
+├── templates/
+│   └── index.html
+├── static/
+└── media/
+    ├── data/
+    ├── uploads/
+    └── backups/
